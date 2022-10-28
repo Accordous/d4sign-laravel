@@ -2,33 +2,33 @@
 
 namespace Accordous\D4sign\Services;
 
+use Illuminate\Support\Facades\Http;
+
 abstract class Client
 {
     protected $client;
-
+    
     protected const ENV_PRODUCTION = 'https://secure.d4sign.com.br/api/v1/';
-
+    
     protected const ENV_SANDBOX = 'http://sandbox.d4sign.com.br/api/v1/';
-
+    
     protected function getBaseUri()
     {
         return config('d4sign.mode') === 'production' ? self::ENV_PRODUCTION : self::ENV_SANDBOX;
     }
-
+    
     public function __construct()
     {
-        $this->client = new \GuzzleHttp\Client(
-            [
-                'base_uri' => $this->getBaseUri(),
-                'headers'  => [
-                    'Accept'   => 'application/json',
+        $this->client = Http::acceptJson()
+            ->withHeaders(
+                [
                     'tokenAPI' => config('d4sign.token_api'),
-                    'cryptKey' => config('d4sign.crypt_key')
+                    'cryptKey' => config('d4sign.crypt_key'),
                 ]
-            ]
-        );
+            )
+            ->baseUrl($this->getBaseUri());
     }
-
+    
     /**
      * @param  string  $url
      * @param  array  $query
@@ -39,7 +39,7 @@ abstract class Client
     {
         return $this->client->get($url, $query);
     }
-
+    
     /**
      * @param  string  $url
      * @param  array  $data
@@ -52,7 +52,7 @@ abstract class Client
             'json' => $data
         ]);
     }
-
+    
     /**
      * @param  string  $url
      * @param  array  $data
@@ -65,7 +65,7 @@ abstract class Client
             'json' => $data
         ]);
     }
-
+    
     /**
      * @param  string  $url
      * @param  array  $data
@@ -76,5 +76,5 @@ abstract class Client
     {
         return $this->client->delete($url, $data);
     }
-
+    
 }
