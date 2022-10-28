@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Services;
+namespace Accordous\D4sign\Services;
 
 class Templates extends Client
 {

@@ -1,11 +1,15 @@
 {
-    "name": "edmarr2/d4sign-laravel",
+    "name": "Accordous/d4sign-laravel",
     "description": "A D4Sign é uma plataforma de assinatura eletrônica de documentos que atende os requisitos da Medida Provisória 2.200-2/01, ou seja, autenticidade, integridade e não repúdio. Trazendo, assim, validade jurídica para todas as assinaturas realizadas através da D4Sign.",
     "license": "MIT",
     "authors": [
         {
             "name": "edmarr2",
             "email": "edmar_espinola@hotmail.com"
+        },
+        {
+            "name": "Lúdio",
+            "email": "ludio.ao@gmail.com"
         }
     ],
     "require": {
@@ -19,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Edmarr2\\D4sign\\": "src/"
+            "Accordous\\D4sign\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Edmarr2\\D4sign\\Tests\\": "tests/"
+            "Accordous\\D4sign\\Tests\\": "tests/"
         }
     },
     "extra": {

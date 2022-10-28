@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Exceptions;
+namespace Accordous\D4sign\Exceptions;
 
 class InvalidCryptKeyException extends \Exception
 {

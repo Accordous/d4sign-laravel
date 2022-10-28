@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Facades;
+namespace Accordous\D4sign\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

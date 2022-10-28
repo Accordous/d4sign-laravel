@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Services;
+namespace Accordous\D4sign\Services;
 
 class Folders extends Client
 {
@@ -13,7 +13,7 @@ class Folders extends Client
     {
         return $this->get('folders/'.$uuidSafe.'/find');
     }
-
+    
     /**
      * @param $uuidSafe
      * @param $folderName
@@ -26,7 +26,7 @@ class Folders extends Client
             'folder_name' => $folderName,
         ]);
     }
-
+    
     /**
      * @param $uuidSafe
      * @param $uuidFolder
@@ -41,5 +41,5 @@ class Folders extends Client
             'uuid_folder' => $uuidFolder,
         ]);
     }
-
+    
 }

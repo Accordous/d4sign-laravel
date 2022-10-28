@@ -14,7 +14,7 @@ Abra o arquivo `composer.json` e insira a seguinte instrução
 Via composer, execute o seguinte comando: 
 
 ```shell script
-composer require edmarr2/d4sign-laravel
+composer require accordous/d4sign-laravel
 ```
 
 # Criação do configurador

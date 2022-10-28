@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Services;
+namespace Accordous\D4sign\Services;
 
 abstract class Client
 {
@@ -8,11 +8,11 @@ abstract class Client
 
     protected const ENV_PRODUCTION = 'https://secure.d4sign.com.br/api/v1/';
 
-    protected const ENV_SANDBOX = 'http://demo.d4sign.com.br/api/v1/';
+    protected const ENV_SANDBOX = 'http://sandbox.d4sign.com.br/api/v1/';
 
     protected function getBaseUri()
     {
-        return $baseUri = config('d4sign.mode') === 'production' ? self::ENV_PRODUCTION : self::ENV_SANDBOX;
+        return config('d4sign.mode') === 'production' ? self::ENV_PRODUCTION : self::ENV_SANDBOX;
     }
 
     public function __construct()

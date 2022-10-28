@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Services;
+namespace Accordous\D4sign\Services;
 
 class Tags extends Client
 {
@@ -13,7 +13,7 @@ class Tags extends Client
     {
         return $this->get('tags/'.$uuid_arquivo);
     }
-
+    
     /**
      * @param $uuid_arquivo
      * @param $tag
@@ -26,7 +26,7 @@ class Tags extends Client
             'tag' => $tag
         ]);
     }
-
+    
     /**
      * @param $uuid_arquivo
      * @param $tag
@@ -39,7 +39,7 @@ class Tags extends Client
             'tag' => $tag
         ]);
     }
-
+    
     /**
      * @param $uuid_arquivo
      * @param $tag
@@ -52,5 +52,5 @@ class Tags extends Client
             'tag' => $tag
         ]);
     }
-
+    
 }

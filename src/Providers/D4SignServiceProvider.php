@@ -1,6 +1,6 @@
 <?php
 
-namespace Edmarr2\D4sign\Providers;
+namespace Accordous\D4sign\Providers;
 
 use Edmarr2\D4sign\Services\D4sign;
 use Illuminate\Support\ServiceProvider;
