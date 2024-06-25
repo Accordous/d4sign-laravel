@@ -2,6 +2,7 @@
 
 namespace Accordous\D4sign\Services;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 abstract class Client
@@ -34,9 +35,9 @@ abstract class Client
      * @param  string  $url
      * @param  array  $query
      *
-     * @return mixed
+     * @return \Illuminate\Http\Client\Response
      */
-    public function get(string $url, array $query = [])
+    public function get(string $url, array $query = []): Response
     {
         return $this->client->get($url, $query);
     }
@@ -45,9 +46,9 @@ abstract class Client
      * @param  string  $url
      * @param  array  $data
      *
-     * @return mixed
+     * @return \Illuminate\Http\Client\Response
      */
-    public function post(string $url, array $data = [])
+    public function post(string $url, array $data = []): Response
     {
         return $this->client->post($url, [
             'json' => $data,
@@ -58,9 +59,9 @@ abstract class Client
      * @param  string  $url
      * @param  array  $data
      *
-     * @return mixed
+     * @return \Illuminate\Http\Client\Response
      */
-    public function put(string $url, array $data)
+    public function put(string $url, array $data): Response
     {
         return $this->client->put($url, [
             'json' => $data,
@@ -71,9 +72,9 @@ abstract class Client
      * @param  string  $url
      * @param  array  $data
      *
-     * @return mixed
+     * @return \Illuminate\Http\Client\Response
      */
-    public function delete(string $url, array $data)
+    public function delete(string $url, array $data): Response
     {
         return $this->client->delete($url, $data);
     }
