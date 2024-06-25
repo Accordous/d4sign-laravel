@@ -4,8 +4,9 @@ namespace Accordous\D4sign\Services;
 
 class Certificate extends Client
 {
+
     /**
-     * @param $uuid_arquivo
+     * @param $fileUuid
      * @param $key_signer
      *
      * @return mixed
@@ -16,7 +17,7 @@ class Certificate extends Client
     }
 
     /**
-     * @param $uuid_arquivo
+     * @param $fileUuid
      * @param $key_signer
      * @param $documentType
      * @param  string  $documentNumber
@@ -30,7 +31,8 @@ class Certificate extends Client
             'key_signer'      => $key_signer,
             'document_type'   => $documentType,
             'pades'           => $pades,
-            'document_number' => $documentNumber
+            'document_number' => $documentNumber,
         ]);
     }
+
 }
