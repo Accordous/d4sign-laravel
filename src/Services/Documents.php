@@ -214,7 +214,9 @@ class Documents extends Client
 			],
 		];
 
-		return $this->client
+		$client = (clone $this->client);
+
+		return $client
 			->attach('file', file_get_contents($filePath), basename($filePath))
 			->post(
 				$url,
