@@ -52,8 +52,7 @@ abstract class Client
     public function post(string $url, array $data = []): Response
     {
         return $this->client
-	        ->post($url, $data)
-	        ->json();
+	        ->post($url, $data);
     }
 
     /**
