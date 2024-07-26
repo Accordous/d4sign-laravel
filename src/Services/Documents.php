@@ -202,22 +202,15 @@ class Documents extends Client
      */
     private function _upload($uuidSafe, $filePath, $uuidFolder = '')
     {
-        return $this->client->request(
-            'POST',
-            'documents/'.$uuidSafe.'/upload',
-            [
-                'multipart' => [
-                    [
-                        'name' => 'file',
-                        'contents' => Psr7\Utils::tryFopen($filePath, 'r'),
-                    ],
-                    [
-                        'name' => 'uuid_folder',
-                        'contents' => $uuidFolder,
-                    ]
-                ]
-            ]
-        );
+		$url = 'documents/'.$uuidSafe.'/upload';
+		return $this->client
+			->attach('file', Psr7\Utils::tryFopen($filePath, 'r'))
+			->post(
+				$url,
+				[
+					'uuid_folder' => $uuidFolder,
+				]
+			);
     }
     
     private function _uploadSlave($uuid_original_file, $filePath)
