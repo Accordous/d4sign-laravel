@@ -14,7 +14,7 @@ class Documents extends Client
             'key-signer' => $keySigner
         ]);
     }
-    
+
     public function changeSmsNumber($documentKey, $keySigner, $email, $sms)
     {
         return $this->post('documents/'.$documentKey.'/changesmsnumber', [
@@ -23,8 +23,8 @@ class Documents extends Client
             'key-signer' => $keySigner
         ]);
     }
-    
-    
+
+
     public function removeEmail($documentKey, $email, $key)
     {
         return $this->post('documents/'.$documentKey.'/removeemaillist', [
@@ -32,7 +32,7 @@ class Documents extends Client
             'key-signer' => $key,
         ]);
     }
-    
+
     public function changeEmail($documentKey, $email_before, $email_after, $key = '')
     {
         return $this->post('documents/'.$documentKey.'/changeemail', [
@@ -41,33 +41,33 @@ class Documents extends Client
             'key-signer' => $key,
         ]);
     }
-    
+
     public function find($documentKey = '', $page = 1)
     {
         return $this->get('documents/'.$documentKey, [
             'pg' => $page
         ]);
     }
-    
+
     public function listSignatures($documentKey)
     {
         return $this->get('documents/'.$documentKey.'/list');
     }
-    
+
     public function status($status, $page = 1)
     {
         return $this->get('documents/'.$status.'/status', [
             'pg' => $page
         ]);
     }
-    
+
     public function safe($safeKey, $uuidFolder = '', $page = 1)
     {
         return $this->get('documents/'.$safeKey.'/safe/'.$uuidFolder, [
             'pg' => $page
         ]);
     }
-    
+
     public function upload($uuidSafe, $filePath, $uuidFolder = '')
     {
         if (!$uuidSafe) {
@@ -75,8 +75,8 @@ class Documents extends Client
         }
         return $this->_upload($uuidSafe, $filePath, $uuidFolder);
     }
-    
-    
+
+
     public function uploadBinary($uuidSafe, $base64_binary, $mime_type, $name, $uuidFolder = '')
     {
         return $this->post('documents/'.$uuidSafe.'/uploadbinary', [
@@ -86,7 +86,7 @@ class Documents extends Client
             'uuid_folder' => ($uuidFolder)
         ]);
     }
-    
+
     public function uploadSlaveBinary($uuid_master, $base64_binary, $mime_type, $name)
     {
         return $this->post('documents/'.$uuid_master.'/uploadslavebinary', [
@@ -95,26 +95,26 @@ class Documents extends Client
             'name' => $name
         ]);
     }
-    
+
     public function uploadSlave($uuid_original_file, $filePath)
     {
         return $this->_uploadSlave($uuid_original_file, $filePath);
     }
-    
+
     public function cancel($documentKey, $comment = '')
     {
         return $this->post('documents/'.$documentKey.'/cancel', [
             'comment' => ($comment)
         ]);
     }
-    
+
     public function createList($documentKey, $signers)
     {
         return $this->post('documents/'.$documentKey.'/createlist', [
             'signers' => ($signers)
         ]);
     }
-    
+
     /**
      * @param $documentKey
      * @param $documentName
@@ -131,7 +131,7 @@ class Documents extends Client
             'uuid_folder' => $uuidFolder
         ]);
     }
-    
+
     /**
      * @param $documentKey
      * @param $url
@@ -144,7 +144,7 @@ class Documents extends Client
             'url' => ($url)
         ]);
     }
-    
+
     /**
      * @param $documentKey
      *
@@ -154,7 +154,7 @@ class Documents extends Client
     {
         return $this->get('documents/'.$documentKey.'/webhooks');
     }
-    
+
     public function sendToSigner($documentKey, $message = '', $workflow = '0', $skip_email = false)
     {
         return $this->post('documents/'.$documentKey.'/sendtosigner', [
@@ -163,7 +163,7 @@ class Documents extends Client
             'skip_email' => $skip_email
         ]);
     }
-    
+
     public function addInfo(
         $documentKey,
         $email = '',
@@ -180,7 +180,7 @@ class Documents extends Client
             'birthday' => $birthday,
         ]);
     }
-    
+
     public function resend($documentKey, $email, $key = '')
     {
         return $this->post('documents/'.$documentKey.'/resend', [
@@ -188,15 +188,15 @@ class Documents extends Client
             "key_signer" => $key
         ]);
     }
-    
+
     public function getFileUrl($documentKey, $type)
     {
         return $this->post('documents/'.$documentKey.'/download', [
             'type' => $type
         ]);
     }
-    
-    
+
+
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -214,9 +214,6 @@ class Documents extends Client
 			],
 		];
 
-
-		dd($url , $body);
-
 		return $this->client
 			->attach('file', file_get_contents($filePath), basename($filePath))
 			->post(
@@ -224,14 +221,14 @@ class Documents extends Client
 				$body
 			);
 	}
-    
+
     private function _uploadSlave($uuid_original_file, $filePath)
     {
         $f = $this->_getCurlFile($filePath);
-        
+
         return $this->post('documents/'.$uuid_original_file.'/uploadslave', ['file' => $f]);
     }
-    
+
     private function _getCurlFile($filename, $contentType = '', $postname = '')
     {
         // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
@@ -241,7 +238,7 @@ class Documents extends Client
             $finfo = finfo_file($finfo, $filename);
             return curl_file_create($filename, $finfo, basename($filename));
         }
-        
+
         // Use the old style if using an older version of PHP
         $postname = $postname or $filename;
         $value = "@{$filename};filename=".$postname;
@@ -252,7 +249,7 @@ class Documents extends Client
         }
         return $value;
     }
-    
+
     public function uploadHash($uuidSafe, $sha256, $sha512, $name, $uuidFolder = '')
     {
         return $this->post('documents/'.$uuidSafe.'/uploadhash', [
