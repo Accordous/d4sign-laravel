@@ -12,7 +12,7 @@ abstract class Client
 
     protected const ENV_PRODUCTION = 'https://secure.d4sign.com.br/api/v1/';
 
-    protected const ENV_SANDBOX = 'http://sandbox.d4sign.com.br/api/v1/';
+    protected const ENV_SANDBOX = 'https://sandbox.d4sign.com.br/api/v1/';
 
     protected function getBaseUri()
     {
@@ -39,7 +39,8 @@ abstract class Client
      */
     public function get(string $url, array $query = []): Response
     {
-        return $this->client->get($url, $query);
+        return $this->client
+	        ->get($url, $query);
     }
 
     /**
@@ -50,9 +51,9 @@ abstract class Client
      */
     public function post(string $url, array $data = []): Response
     {
-        return $this->client->post($url, [
-            'json' => $data,
-        ]);
+        return $this->client
+	        ->post($url, $data)
+	        ->json();
     }
 
     /**
@@ -63,9 +64,7 @@ abstract class Client
      */
     public function put(string $url, array $data): Response
     {
-        return $this->client->put($url, [
-            'json' => $data,
-        ]);
+        return $this->client->put($url, $data);
     }
 
     /**

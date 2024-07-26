@@ -200,18 +200,30 @@ class Documents extends Client
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function _upload($uuidSafe, $filePath, $uuidFolder = '')
-    {
+	/**
+	 * @throws \GuzzleHttp\Exception\GuzzleException
+	 */
+	private function _upload($uuidSafe, $filePath, $uuidFolder = '')
+	{
 		$url = 'documents/'.$uuidSafe.'/upload';
+
+		$body = [
+			[
+				'name' => 'uuid_folder',
+				'contents' => $uuidFolder,
+			],
+		];
+
+
+		dd($url , $body);
+
 		return $this->client
-			->attach('file', Psr7\Utils::tryFopen($filePath, 'r'))
+			->attach('file', file_get_contents($filePath), basename($filePath))
 			->post(
 				$url,
-				[
-					'uuid_folder' => $uuidFolder,
-				]
+				$body
 			);
-    }
+	}
     
     private function _uploadSlave($uuid_original_file, $filePath)
     {
