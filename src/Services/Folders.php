@@ -41,5 +41,12 @@ class Folders extends Client
             'uuid_folder' => $uuidFolder,
         ]);
     }
-    
+
+    public function createSubfolder(string $uuidSafe, string $uuidParentFolder, string $folderName)
+    {
+        return $this->post('folders/'.$uuidSafe.'/create', [
+            'uuid_folder' => $uuidParentFolder,
+            'folder_name' => $folderName,
+        ]);
+    }
 }
